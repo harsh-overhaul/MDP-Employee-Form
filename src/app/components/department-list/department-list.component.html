@@ -1,0 +1,43 @@
+<p></p>
+<div class="containerw">
+  <!-- No data message -->
+  <p *ngIf="Department.length <= 0" class="no-data text-center">
+    There is no Department added yet!
+  </p>
+
+  <!-- Employee list -->
+  <div>
+  <div class="table">
+  <table class="table table-bordered" *ngIf="Department.length > 0">
+    <thead class="table-success">
+      <tr>
+        <th scope="col">Department ID</th>
+        <th scope="col">Department Head Name</th>
+        <th scope="col">Department Head Email</th>
+        <th scope="col">Department </th>
+        <th scope="col">Department Phone No </th>
+        <th scope="col center">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let department of Department; let i = index">
+        <!-- <th>{{i}}</th> -->
+        <th scope="row">{{ department._id }}</th>
+        <td>{{ department.name }}</td>
+        <td>{{ department.email }}</td>
+        <td>{{ department.designation }}</td>
+        <td>{{ department.phoneNumber }}</td>
+        <td class="text-center edit-block">
+          <span class="edit" [routerLink]="['/department-edit/', department._id]">
+            <button type="button" class="btn btn-warning btn-sm mr-3">Edit</button>
+          </span>
+          <span class="delete" (click)="removeDepartment(department,i)">
+            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
